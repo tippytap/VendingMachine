@@ -17,7 +17,7 @@ public class Bank {
 	
 	public double removeMoney() throws BankEmptyException{
 		if(this.total == 0)
-			throw new BankEmptyException();
+			throw new BankEmptyException("**********************No money has been collected\n");
 		double money = this.total;
 		this.total = 0;
 		return money;

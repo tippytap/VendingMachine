@@ -5,4 +5,14 @@
  */
 public class CollectionEmptyException extends Exception {
 
+	
+	private String message;
+	
+	public CollectionEmptyException(String message){
+		this.message = message;
+	}
+	
+	public String getMessage(){
+		return this.message;
+	}
 }

@@ -9,6 +9,7 @@ public class Stock {
 	private ItemQueue[] stock;
 	private final int MAX = 6;
 	private int stockedSoFar;
+	private int size;
 	
 	/**
 	 * Creates a Collection of ItemQueues, which serve as the
@@ -16,6 +17,7 @@ public class Stock {
 	 * */
 	public Stock(){
 		this.stockedSoFar = 0;
+		this.size = 0;
 		createStock();
 	}
 	
@@ -23,7 +25,12 @@ public class Stock {
 		stock = new ItemQueue[MAX];
 		for(int i = 0; i < MAX; i++){
 			stock[i] = new ItemQueue();
+			this.size++;
 		}
+	}
+	
+	public int getSize(){
+		return this.size;
 	}
 
 	/**
@@ -47,6 +54,9 @@ public class Stock {
 		if(found){
 			product = stock[productIndex].removeItem();
 		}
+		else{
+			throw new CollectionEmptyException("**********************Product not found\n");
+		}
 		
 		return product;
 	}
@@ -63,15 +73,19 @@ public class Stock {
 	/**
 	 * Takes a new item and stocks it in either a queue of products of
 	 * the same name or puts it in an empty queue
-	 * @precondition item must be valid. name cannot be empty string, price cannot be 0.0 or less
+	 * @precondition Name cannot be empty string and must match an existing product name 
+	 * @precondition price cannot be 0.0 or less and must match an existing product price
 	 * @param Item
+	 * @throws CollectionFullException 
 	 * */
 	public void stockItem(Item newItem) throws CollectionFullException{
 		String name = newItem.getName();
 		int productIndex = 0;
 		boolean found = false;
 		for(int i = 0; i < stock.length && !found; i++){
-			if(stock[i].getProductName() == name){
+			if(name.equals(stock[i].getProductName())){
+				if(stock[i].size() == 6)
+					throw new CollectionFullException("**********************That item is completely stocked\n");
 				found = true;
 				productIndex = i;
 			}
@@ -83,6 +97,15 @@ public class Stock {
 		else{
 			stock[productIndex].addItem(newItem);
 		}
+	}
+	
+	public double checkPrice(String name){
+		double price = 0;
+		for(ItemQueue queue : this.stock){
+			if(name.equals(queue.getProductName()))
+				price = queue.getProductPrice();
+		}
+		return price;
 	}
 	
 	/**
@@ -100,6 +123,17 @@ public class Stock {
 	
 	public ItemQueue[] getStock(){
 		return this.stock;
+	}
+	
+	public String findItem(int itemCode){
+		int i = 0;
+		String name = "";
+		for(ItemQueue queue : stock){
+			if(i == itemCode)
+				name = queue.getProductName();
+			i++;
+		}
+		return name;
 	}
 	
 	public String toString(){

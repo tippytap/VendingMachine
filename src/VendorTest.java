@@ -17,7 +17,7 @@ public class VendorTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		vendor = new Vendor(new Machine());
+		vendor = new Vendor(new Machine(true));
 	}
 
 	/**
@@ -41,23 +41,25 @@ public class VendorTest {
 
 	/**
 	 * Test method for {@link Vendor#requestAccess(java.lang.String)}.
+	 * @throws RestrictedAccessException 
 	 */
 	@Test
-	public void testRequestAccess() {
+	public void testRequestAccess() throws RestrictedAccessException {
 		assertTrue("passcode correct", vendor.requestAccess("admin", 3));
 		assertTrue("access elevated to maintenance menu", vendor.getState() == 3);
 	}
 	/**
 	 * Test method for {@link Vendor#requestAccess(java.lang.String)}.
+	 * @throws RestrictedAccessException 
 	 */
 	@Test
-	public void testRequestAccessFail() {
+	public void testRequestAccessFail() throws RestrictedAccessException {
 		assertFalse("passcode correct", vendor.requestAccess("boop", 3));
 		assertTrue("access elevated to maintenance menu", vendor.getState() == 0);
 	}
 	
 	@Test
-	public void testExitMenu(){
+	public void testExitMenu() throws RestrictedAccessException{
 		vendor.requestAccess("admin", 3);
 		vendor.exitToMenu(0);
 		assertTrue("access demoted successfully", vendor.getState() == 0);

@@ -22,7 +22,7 @@ public class ItemQueue {
 	
 	public void addItem(Item newItem) throws CollectionFullException{
 		if(size == MAX)
-			throw new CollectionFullException();
+			throw new CollectionFullException("**********************That item is completely stocked\n");
 		items.add(newItem);
 		this.productName = newItem.getName();
 		this.productPrice = newItem.getPrice();
@@ -39,7 +39,7 @@ public class ItemQueue {
 	
 	public Item removeItem() throws CollectionEmptyException{
 		if(this.size <= 0)
-			throw new CollectionEmptyException();
+			throw new CollectionEmptyException("**********************Product not found\n");
 		this.size--;
 		return items.removeFirst();
 	}

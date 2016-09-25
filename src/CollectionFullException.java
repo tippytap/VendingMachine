@@ -4,5 +4,15 @@
  * @version 1.0
  */
 public class CollectionFullException extends Exception {
+	
+	private String message;
+	
+	public CollectionFullException(String message){
+		this.message = message;
+	}
+	
+	public String getMessage(){
+		return this.message;
+	}
 
 }

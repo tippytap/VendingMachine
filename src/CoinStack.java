@@ -29,7 +29,7 @@ public class CoinStack {
 	
 	public Coin popCoin() throws CollectionEmptyException{
 		if(this.size <= 0)
-			throw new CollectionEmptyException();
+			throw new CollectionEmptyException("**********************No coins have been enetered\n");
 		Coin top = coins.pop();
 		this.total -= top.getValue();
 		this.size--;
