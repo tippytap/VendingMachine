@@ -54,8 +54,8 @@ public class StockTest {
 		Item coke = new Item("Coca-Cola", 0.75);
 		stock.stockItem(sprite);
 		stock.stockItem(coke);
-		assertTrue("got price from queue", 0.50 == stock.getPrice("Sprite"));
-		assertTrue("got price from different item in queue", 0.75 == stock.getPrice("Coca-Cola"));
+		assertTrue("got price from queue", 0.50 == stock.checkPrice("Sprite"));
+		assertTrue("got price from different item in queue", 0.75 == stock.checkPrice("Coca-Cola"));
 	}
 
 	/**

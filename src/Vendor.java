@@ -26,6 +26,10 @@ public class Vendor {
 	private String currentMessage;
 	private CoinStack coinsCollected;
 	
+	/**
+	 * Returns a valid Vendor object
+	 * @param Machine
+	 * */
 	public Vendor(Machine machine){
 		this.machine = machine;
 		this.bank = new Bank();
@@ -37,7 +41,7 @@ public class Vendor {
 		this.initVendingMachine();
 	}
 	
-	public void initVendingMachine(){
+	private void initVendingMachine(){
 		if(!machine.getDebug()){
 			String[] productNames = new String[]{"Sprite", "Coca-Cola", "Mountain Dew", "Dr. Pepper", "Pepsi", "Butt-Cola"};
 			double[] productPrices = new double[]{0.50, 0.50, 0.75, 1.00, 0.10, 2.00};
@@ -57,7 +61,7 @@ public class Vendor {
 		this.currentMessage = this.basicMenu;
 	}
 	
-	public void setMessages(){
+	private void setMessages(){
 		this.basicMenu = 
 				"\n** Coins inserted: " + this.getCoinsCollectedAmount() + " **\n\n"
 				+ "Select an item:" + this.stock
@@ -83,6 +87,10 @@ public class Vendor {
 		this.messages[5] = ITEM_NOT_IN_STOCK;
 	}
 	
+	/**
+	 * Takes user input and translates it into a command for the system
+	 * @param String
+	 * */
 	public void processCommand(String input){
 		if(input.equals("exit"))
 			machine.setExit(true);
@@ -209,6 +217,10 @@ public class Vendor {
 		this.setMessages();
 	}
 	
+	/**
+	 * Gives the amount of coins collected so far
+	 * @return double
+	 * */
 	public double getCoinsCollectedAmount(){
 		return this.coinsCollected.getAmount();
 	}
@@ -251,6 +263,11 @@ public class Vendor {
 		return coinReturn;
 	}
 	
+	/**
+	 * Retrieves an item from the stock
+	 * @param String
+	 * @throws NotEnoughMoneyException
+	 * */
 	public Item selectItem(String name) throws NotEnoughMoneyException{
 		Item item = null;
 		try{
@@ -267,6 +284,12 @@ public class Vendor {
 		return item;
 	}
 	
+	/**
+	 * Elevates the privelege of the user. Takes the passcode and the level to go to.
+	 * @param String
+	 * @param int
+	 * @throws RestrictedAccessException
+	 * */
 	public boolean requestAccess(String passcode, int level) throws RestrictedAccessException{
 		boolean success = false;
 		String pass = passcode.trim();
@@ -279,6 +302,10 @@ public class Vendor {
 		return success;
 	}
 	
+	/**
+	 * Takes a new passcode and updates the current passcode to it
+	 * @param String
+	 * */
 	public void updatePasscode(String newCode){
 		this.passcode = newCode;
 	}
@@ -303,14 +330,22 @@ public class Vendor {
 		}
 	}
 	
+	/**
+	 * Returns the current state of the vendor
+	 * @return int
+	 * */
 	public int getState(){
 		return this.state;
 	}
 	
-	public String getSpecificMessage(int message){
+	private String getSpecificMessage(int message){
 		return this.messages[message];
 	}
 	
+	/**
+	 * Returns whatever the current message is for the vendor
+	 * @retrun String
+	 * */
 	public String getMessage(){
 		return this.currentMessage;
 	}

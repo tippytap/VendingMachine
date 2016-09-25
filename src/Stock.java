@@ -29,6 +29,10 @@ public class Stock {
 		}
 	}
 	
+	/**
+	 * Returns the current size of the stock
+	 * @return int
+	 * */
 	public int getSize(){
 		return this.size;
 	}
@@ -63,14 +67,6 @@ public class Stock {
 		return product;
 	}
 	
-	public double getPrice(String name){
-		double price = 0;
-		for(ItemQueue product : stock){
-			if(name == product.getProductName())
-				price = product.getProductPrice();
-		}
-		return price;
-	}
 	
 	/**
 	 * Takes a new item and stocks it in either a queue of products of
@@ -101,6 +97,11 @@ public class Stock {
 		}
 	}
 	
+	/**
+	 * Finds an item and returns its price based on the item name
+	 * @param String
+	 * @return double
+	 * */
 	public double checkPrice(String name){
 		double price = 0;
 		for(ItemQueue queue : this.stock){
@@ -123,10 +124,17 @@ public class Stock {
 		return found;
 	}
 	
+	/**
+	 * Returns the whole stock
+	 * @return ItemQueue[]
+	 * */
 	public ItemQueue[] getStock(){
 		return this.stock;
 	}
 	
+	/**
+	 * 
+	 * */
 	public String findItem(int itemCode){
 		int i = 0;
 		String name = "";
