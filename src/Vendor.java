@@ -12,7 +12,7 @@ public class Vendor {
 					  MAINTENANCE_ITEM_SELECT_MENU = 4;
 	
 	private int state;
-	//private Machine machine;
+	private Machine machine;
 	private Bank bank;
 	private Stock stock;
 	private String passcode;
@@ -31,7 +31,8 @@ public class Vendor {
 	private String currentMessage;
 	private CoinStack coinsCollected;
 	
-	public Vendor(){
+	public Vendor(Machine machine){
+		this.machine = machine;
 		this.bank = new Bank();
 		this.stock = new Stock();
 		this.state = BASIC_MENU;
@@ -51,6 +52,19 @@ public class Vendor {
 		this.messages[3] = MAINTENANCE_MENU_MESSAGE;
 		this.messages[4] = this.maintenanceItemSelectMenu;
 		this.messages[5] = ITEM_NOT_IN_STOCK;
+	}
+	
+	public void processCommand(int command){
+		switch(this.state){
+		case BASIC_MENU:
+			switch(command){
+			case 7:
+				boolean accessGranted = this.requestAccess(
+						machine.getInput("Enter passcode: "), 3
+				);
+				break;
+			}
+		}
 	}
 	
 	/**
@@ -120,7 +134,8 @@ public class Vendor {
 	
 	public boolean requestAccess(String passcode, int level){
 		boolean success = false;
-		if(passcode == this.passcode){
+		String pass = passcode.trim();
+		if(pass.equals(this.passcode)){
 			this.state = level;
 			this.currentMessage = this.messages[level];
 			success = true;

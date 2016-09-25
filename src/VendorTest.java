@@ -17,7 +17,7 @@ public class VendorTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		vendor = new Vendor();
+		vendor = new Vendor(new Machine());
 	}
 
 	/**
