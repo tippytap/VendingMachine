@@ -169,6 +169,8 @@ public class Vendor {
 				case 2:
 					try {
 						machine.giveMoney(this.bank.removeMoney());
+						this.setMessages();
+						this.currentMessage = this.getSpecificMessage(MAINTENANCE_MENU);
 					} 
 					catch (BankEmptyException e) {
 						this.currentMessage = "\n" + e.getMessage() + this.getSpecificMessage(this.state);
