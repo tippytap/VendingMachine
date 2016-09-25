@@ -46,6 +46,8 @@ public class Stock {
 		
 		for(int i = 0; i < stock.length && !found; i++){
 			if(name == stock[i].getProductName()){
+				if(stock[i].size() == 0)
+					throw new CollectionEmptyException("**********************Product needs to be restocked\n");
 				productIndex = i;
 				found = true;
 			}

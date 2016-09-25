@@ -21,14 +21,9 @@ public class ItemQueueTest {
 	}
 
 	@Test
-	public void testAddItemAndSize() {
-		try {
-			items.addItem(new Item("Coca-Cola", 0.50));
-			assertTrue("addItem and size", items.size() == 1);
-		} catch (CollectionFullException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void testAddItemAndSize() throws CollectionFullException {
+		items.addItem(new Item("Coca-Cola", 0.50));
+		assertTrue("addItem and size", items.size() == 1);
 	}
 	
 	@Test(expected = CollectionFullException.class)

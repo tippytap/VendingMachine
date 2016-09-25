@@ -32,7 +32,6 @@ public class Vendor {
 		this.stock = new Stock();
 		this.state = BASIC_MENU;
 		this.coinsCollected = new CoinStack();
-//		this.setMessages();
 		this.currentMessage = this.basicMenu;
 		this.passcode = "admin";
 		this.initVendingMachine();
@@ -110,7 +109,7 @@ public class Vendor {
 					} 
 					catch (Exception e) {
 						this.state = BASIC_MENU;
-						this.currentMessage = "\n" + e.getMessage() + this.getSpecificMessage(this.state);
+						this.currentMessage = "\n" + this.getSpecificMessage(this.state);
 					}
 					break;
 					
@@ -254,18 +253,17 @@ public class Vendor {
 	
 	public Item selectItem(String name) throws NotEnoughMoneyException{
 		Item item = null;
-		try {
+		try{
 			double price = stock.checkPrice(name);
 			if(price > this.coinsCollected.getAmount())
 				throw new NotEnoughMoneyException("**********************You have not entered enough money\n");
 			item = stock.getItem(name);
-			this.bank.addMoney(item.getPrice());
-			this.state = VENDING;
-			
-		} 
-		catch (CollectionEmptyException e) {
-			this.currentMessage = "\n" + e.getMessage() + this.getSpecificMessage(this.state);
 		}
+		catch(Exception e){
+			this.currentMessage = "\n" + this.getSpecificMessage(this.state);
+		}
+		this.bank.addMoney(item.getPrice());
+		this.state = VENDING;
 		return item;
 	}
 	
@@ -282,9 +280,7 @@ public class Vendor {
 	}
 	
 	public void updatePasscode(String newCode){
-//		System.out.println("boop");
 		this.passcode = newCode;
-//		System.out.println(this.passcode);
 	}
 	
 	/**
@@ -303,7 +299,7 @@ public class Vendor {
 			this.setMessages();
 		}
 		catch(Exception e){
-			this.currentMessage = e.getMessage();
+			this.currentMessage = "\n" + e.getMessage() + this.getSpecificMessage(this.state);
 		}
 	}
 	

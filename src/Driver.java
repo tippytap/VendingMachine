@@ -7,7 +7,7 @@
 public class Driver {
 
 	public static void main(String[] args){
-		Machine machine = new Machine(false);
+		Machine machine = new Machine(true);
 		machine.start();
 	}
 }
