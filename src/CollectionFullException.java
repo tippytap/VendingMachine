@@ -1,6 +1,6 @@
 /**
  * CollectionFullException.java - when a collection is full, don't add more
- * @author erikmiller
+ * @author erik miller
  * @version 1.0
  */
 public class CollectionFullException extends Exception {

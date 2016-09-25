@@ -1,6 +1,6 @@
 /**
- * ProductNotFoundException.java - specifics here
- * @author erikmiller
+ * ProductNotFoundException.java - If the system can't find a product throw this exception
+ * @author erik miller
  * @version 1.0
  */
 

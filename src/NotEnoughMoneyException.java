@@ -1,6 +1,6 @@
 /**
- * NotEnoughMoneyException.java - specifics here
- * @author erikmiller
+ * NotEnoughMoneyException.java - If you haven't entered enough money yet, throw this exception
+ * @author erik miller
  * @version 1.0
  */
 public class NotEnoughMoneyException extends Exception {

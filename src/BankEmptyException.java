@@ -1,6 +1,6 @@
 /**
- * BankEmptyException.java - specifics here
- * @author erikmiller
+ * BankEmptyException.java - If the bank is empty, throw this exception
+ * @author erik miller
  * @version 1.0
  */
 

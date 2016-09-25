@@ -133,7 +133,9 @@ public class Stock {
 	}
 	
 	/**
-	 * 
+	 * Looks for a product in the stock and returns its name
+	 * @param int
+	 * @param String
 	 * */
 	public String findItem(int itemCode){
 		int i = 0;
