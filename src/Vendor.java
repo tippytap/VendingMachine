@@ -79,23 +79,23 @@ public class Vendor {
 		}
 		else{
 			coinReturn = new CoinStack();
-			double difference = this.coinsCollected.getAmount() - price;
+			int difference = (int)((this.coinsCollected.getAmount() - price) * 100);
 			while(difference != 0){
-				if(difference >= 0.25){
+				if(difference >= 25){
 					coinReturn.pushCoin(new Coin(0.25));
-					difference = 0.25 % difference;
+					difference = difference - 25;
 				}
-				else if(difference >= 0.10){
+				else if(difference >= 10){
 					coinReturn.pushCoin(new Coin(0.10));
-					difference = 0.10 % difference;
+					difference = difference - 10;
 				}
-				else if(difference >= 0.05){
+				else if(difference >= 5){
 					coinReturn.pushCoin(new Coin(0.05));
-					difference = 0.05 % difference;
+					difference = difference - 5;
 				}
-				else if(difference >= 0.01){
+				else if(difference >= 1){
 					coinReturn.pushCoin(new Coin(0.01));
-					difference = 0.01 % difference;
+					difference = difference - 1;
 					
 				}
 			}

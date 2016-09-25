@@ -120,7 +120,7 @@ public class VendorTest {
 	
 	@Test
 	public void testReturnChange() throws NotEnoughMoneyException, RestrictedAccessException{
-		// enter a dollar, but product cost only 0.50
+		// enter 1.16, but product cost only 0.50
 		Coin quarter = new Coin(0.25);
 		Coin dime = new Coin(0.10);
 		Coin nickel = new Coin(0.05);
@@ -132,21 +132,15 @@ public class VendorTest {
 		vendor.stockItem(sprite);
 		vendor.exitToMenu(0);
 		vendor.addCoin(quarter);
-		vendor.addCoin(quarter); // 50
-		vendor.addCoin(dime);
-		vendor.addCoin(dime);
-		vendor.addCoin(dime); // 80
+		vendor.addCoin(quarter); 
+		vendor.addCoin(quarter); 
+		vendor.addCoin(quarter);
+		vendor.addCoin(dime); 
 		vendor.addCoin(nickel);
-		vendor.addCoin(nickel);
-		vendor.addCoin(nickel); // 95
-		vendor.addCoin(penny);
-		vendor.addCoin(penny);
-		vendor.addCoin(penny);
-		vendor.addCoin(penny);
-		vendor.addCoin(penny); // 1.00
+		vendor.addCoin(penny); // 1.16
 		Item gotItem = vendor.selectItem(sprite.getName());
 		CoinStack coinReturn = vendor.releaseCoins(sprite.getPrice());
-		assertTrue("exact change was given", coinReturn.getAmount() == 0.50);
+		assertTrue("exact change was given", coinReturn.getAmount() == 0.66);
 	}
 
 	/**
