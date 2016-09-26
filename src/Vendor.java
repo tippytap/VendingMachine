@@ -113,11 +113,11 @@ public class Vendor {
 						machine.giveChange(change);
 						this.state = BASIC_MENU;
 						this.setMessages();
-						this.currentMessage = this.getSpecificMessage(BASIC_MENU);
+						this.currentMessage = this.getSpecificMessage(this.state);
 					} 
 					catch (Exception e) {
 						this.state = BASIC_MENU;
-						this.currentMessage = "\n" + this.getSpecificMessage(this.state);
+						this.currentMessage = "\n" + "**********************You have not entered enough money\n" + this.getSpecificMessage(this.state);
 					}
 					break;
 					
@@ -279,7 +279,7 @@ public class Vendor {
 			item = stock.getItem(name);
 		}
 		catch(Exception e){
-			this.currentMessage = "\n" + this.getSpecificMessage(this.state);
+			this.currentMessage = "\n" + e.getMessage() + this.getSpecificMessage(this.state);
 		}
 		this.bank.addMoney(item.getPrice());
 		this.state = VENDING;
